@@ -1,0 +1,56 @@
+<style>
+  div {
+    text-align: center;
+  }
+</style>
+
+<div>
+  <h3>Könyvesbolt szerkesztése</h3>
+  <p>
+    <a mat-button routerLink="/bookstores">
+      <b>Vissza</b>
+    </a>
+  </p>
+
+  <form [formGroup]="bookstoreForm" (ngSubmit)="onSubmit(bookstoreForm.value)">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Név</mat-label>
+        <input matInput placeholder="Név" formControlName="name">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Település</mat-label>
+        <input matInput placeholder="Település" formControlName="city">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Irányítószám</mat-label>
+        <input matInput placeholder="Irányítószám" formControlName="zip">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Cím</mat-label>
+        <input matInput placeholder="Cím" formControlName="address">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Nyitvatartási idő</mat-label>
+        <input matInput placeholder="Nyitvatartási idő" formControlName="open">
+      </mat-form-field>
+    </div>
+
+    <span>
+      <button mat-raised-button color="primary" type>Mentés</button>
+    </span>
+
+  </form>
+</div>

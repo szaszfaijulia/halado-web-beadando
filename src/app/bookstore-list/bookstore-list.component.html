@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<style>
+  h2,a,p {
+    text-align: center;
+  }
+
+  table,th,td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+</style>
+
+<body>
+
+  <h2>Könyvesboltok</h2>
+
+  <div style="margin-bottom: 10px; text-align: center">
+    <a mat-mini-fab routerLink="/createbookstore" color="primary">
+      <mat-icon>add</mat-icon>
+    </a>
+  </div>
+
+  <div style="margin-bottom: 10px;">
+    <p>Szűrő:
+      <input placeholder="Név" [(ngModel)]="filterargs.name" />
+      <input placeholder="Település" [(ngModel)]="filterargs.city">
+      <input placeholder="Irányítószám" [(ngModel)]="filterargs.zip">
+      <input placeholder="Cím" [(ngModel)]="filterargs.address">
+      <input placeholder="Nyitvatartás" [(ngModel)]="filterargs.open">
+    </p>
+  </div>
+  <p>
+    <mat-button-toggle-group style="margin-bottom: 20px; text-align: center;" name="sortBy"
+      [(ngModel)]="selectedSorting" (change)="onSort()">
+      <table style="margin-left: auto; margin-right: auto; font-size: 20px">
+        <tr>
+          <th>
+            <mat-button-toggle value="name">Név</mat-button-toggle>
+          </th>
+          <th>
+            <mat-button-toggle value="city">Település</mat-button-toggle>
+          </th>
+          <th>
+            <mat-button-toggle value="zip">Irányítószám</mat-button-toggle>
+          </th>
+          <th>
+            <mat-button-toggle value="address">Cím</mat-button-toggle>
+          </th>
+        </tr>
+        <tr *ngFor="let bookstore of bookstores$ | async | bookstorefilter:filterargs">
+          <td>{{bookstore.name}}</td>
+          <td>{{bookstore.city}}</td>
+          <td>{{bookstore.zip}}</td>
+          <td>{{bookstore.address}}</td>
+          <td>
+            <button title="Szerkesztés" [routerLink]="['/editbookstore', bookstore.id]" >Szerkesztés</button>
+            <button title="Törlés" (click)="onDeleteBookstore(bookstore.id)" >Törlés</button>
+          </td>
+        </tr>
+      </table>
+    </mat-button-toggle-group>
+  </p>
+
+</body>

@@ -1,0 +1,19 @@
+<mat-card *ngIf="book">
+  <mat-card-header>
+    <mat-card-title>
+      <b>{{book.title}}</b>
+    </mat-card-title>
+    <mat-card-subtitle>Szerző: {{book.author}}</mat-card-subtitle>
+    <mat-card-subtitle>Oldal: {{book.pages}}</mat-card-subtitle>
+    <mat-card-subtitle>Publikálva: {{book.published}}</mat-card-subtitle>
+    <mat-card-subtitle>ISBN: {{book.ISBN}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{book.likes}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-button [routerLink]="['']">
+      <b>Vissza</b>
+    </a>
+  </mat-card-actions>
+</mat-card>

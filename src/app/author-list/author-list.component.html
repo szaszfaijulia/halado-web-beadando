@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<style>
+  h2,a,p, div {
+    text-align: center;
+  }
+  table,th,td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+</style>
+
+<body>
+  <h2>Szerzők</h2>
+
+  <div style="margin-bottom: 15px; text-align: center">
+    <a mat-mini-fab routerLink="/createauthor" color="primary">
+      <mat-icon>add</mat-icon>
+    </a>
+  </div>
+
+  <div style="margin-bottom: 10px;">
+    <p>Szűrő:
+      <input placeholder="Név" [(ngModel)]="filterargs.name" />
+      <input placeholder="Születési év" [(ngModel)]="filterargs.birth" />
+      <input placeholder="Nemzetiség" [(ngModel)]="filterargs.nationality"/>
+    </p>
+  </div>
+  
+  <p>
+    <mat-button-toggle-group style="margin-bottom: 20px; text-align: center;" name="sortBy"
+      [(ngModel)]="selectedSorting" (change)="onSort()">
+      <table style="margin-left: auto; margin-right: auto; font-size: 20px">
+        <tr>
+          <th>
+            <mat-button-toggle value="name">Név</mat-button-toggle>
+          </th>
+          <th>
+            <mat-button-toggle value="birth">Születési idő</mat-button-toggle>
+          </th>
+          <th>
+            <mat-button-toggle value="nationality">Nemzetiség</mat-button-toggle>
+          </th>
+        </tr>
+        <tr *ngFor="let author of authors$ | async | authorfilter:filterargs">
+          <td>{{author.name}}</td>
+          <td>{{author.birth}}</td>
+          <td>{{author.nationality}}</td>
+          <td>
+            <button title="Szerkesztés" [routerLink]="['/editauthor', author.id]" >Szerkesztés</button>
+            <button title="Törlés" (click)="onDeleteAuthor(author.id,author.name)" >Törlés</button>
+          </td>
+        </tr>
+      </table>
+    </mat-button-toggle-group>
+  </p>
+
+  <div>
+    <button title="Törölt" routerLink="/deleted" >Törölt szerzők</button>
+  </div>
+</body>
+
+</html>

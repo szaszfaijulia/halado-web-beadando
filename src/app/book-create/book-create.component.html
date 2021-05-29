@@ -1,0 +1,62 @@
+<style>
+  div {
+    text-align: center;
+  }
+</style>
+
+<div>
+  <h3>Könyv hozzáadása</h3>
+  <p>
+    <a mat-button routerLink="/books">
+      <b>Vissza</b>
+    </a>
+  </p>
+
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit(bookForm.value)">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Könyv címe</mat-label>
+        <input matInput placeholder="Cím" formControlName="title" />
+        <mat-hint>Add meg a címet</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Szerző</mat-label>
+        <select matNativeControl [(ngModel)]="selectedAuthor" name="authors" [ngModelOptions]="{standalone: true}">
+          <option value="" selected></option>
+          <option *ngFor="let author of authors$ | async" [value]="author.name">
+          {{author.name}}</option>
+      </select>
+        <mat-hint>Válassz szerzőt</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Publikáció éve</mat-label>
+        <input matInput placeholder="Publikáció éve" formControlName="published"/>
+        <mat-hint>Add meg a publikáció évét</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Oldalak száma</mat-label>
+        <input matInput placeholder="Oldalak száma" formControlName="pages" />
+        <mat-hint>Add meg az oldalak számát</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>ISBN</mat-label>
+        <input matInput placeholder="ISBN" formControlName="ISBN" />
+        <mat-hint>Add meg az ISBN számot</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary" type>Hozzáad</button>
+  </form>
+</div>

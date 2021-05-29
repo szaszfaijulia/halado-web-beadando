@@ -1,0 +1,42 @@
+<style>
+  div {
+    text-align: center;
+  }
+</style>
+
+<div>
+  <h3>Szerző hozzáadása</h3>
+  <p>
+    <a mat-button routerLink="/authors">
+      <b>Vissza</b>
+    </a>
+  </p>
+
+  <form [formGroup]="authorForm" (ngSubmit)="onSubmit(authorForm.value)">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Szerző neve</mat-label>
+        <input matInput placeholder="Név" formControlName="name" />
+        <mat-hint>Add meg a szerző nevét</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Szerző születési éve</mat-label>
+        <input matInput placeholder="Születési év" formControlName="birth" />
+        <mat-hint>Add meg a születési évét</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Szerző nemzetisége</mat-label>
+        <input matInput placeholder="Nemzetiség" formControlName="nationality" />
+        <mat-hint>Add meg a nemzetiségét</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary" type>Hozzáad</button>
+  </form>
+</div>
